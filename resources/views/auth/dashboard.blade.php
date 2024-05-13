@@ -4,6 +4,7 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-md-8">
+        <h1>TEST SCSS</h1>
         <div class="card">
             <div class="card-header">Dashboard</div>
             <form id="logout-form" action="{{route('logout')}}" method="POST">
