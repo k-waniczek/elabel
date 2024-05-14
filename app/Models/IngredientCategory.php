@@ -15,4 +15,13 @@ class IngredientCategory extends Model
      * @var string
      */
     protected $table = 'ingredient_categories';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = ['name'];
+
+    public $timestamps = false;
 }

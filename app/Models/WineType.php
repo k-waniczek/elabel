@@ -15,4 +15,13 @@ class WineType extends Model
      * @var string
      */
     protected $table = 'wine_types';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = ['type'];
+
+    public $timestamps = false;
 }

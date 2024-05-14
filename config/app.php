@@ -105,6 +105,57 @@ return [
         ),
     ],
 
+    'wine_types' => [
+        'White', 
+        'Red', 
+        'Rosé', 
+        'Sparkling', 
+        'Fortified', 
+        'Orange'
+    ],
+
+    'wine_styles' => [
+        'Dry', 
+        'Medium dry', 
+        'Medium sweet', 
+        'Sweet'
+    ],
+
+    'wine_sugar_contents' => [
+        'Brut nature', 
+        'Extra brut', 
+        'Brut', 
+        'Extra dry',
+        'Dry',
+        'Medium dry',
+        'Medium sweet',
+        'Sweet'
+    ],
+
+    'gases' =>  [
+        '(none)', 
+        'Bottling may happen in a protective atmosphere', 
+        'Bottled in a protective atmosphere'
+    ],
+
+    'ingredient_categories' => [
+        'Other igredient', 
+        'Acidity regulator', 
+        'Antioxidant', 
+        'Clarifying agent',
+        'Correction of defect',
+        'Enrichment substance',
+        'Enzyme',
+        'Activators of alcoholic and malolactic fermentation',
+        'Fermentation agent',
+        'Gases and packaging gas',
+        'Preservative',
+        'Raw material',
+        'Sequestrant',
+        'Stabiliser',
+        'Sweetener'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

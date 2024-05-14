@@ -20,9 +20,14 @@ return new class extends Migration
             $table->integer('type');
             $table->integer('style');
             $table->integer('sugar_content');
+            $table->integer('packaging_gases');
             $table->string('appellation');
             $table->float('portion_volume')->default(100.0);
+            $table->float('alcohol');
+            $table->float('residual_sugar');
+            $table->float('total_acidity');
             $table->float('kilocalorie');
+            $table->float('kilojoule');
             $table->float('fat_total');
             $table->float('fat_saturates');
             $table->float('carbohydrate_total');
@@ -53,68 +58,34 @@ return new class extends Migration
 
         Schema::create('ingredient_categories', function(Blueprint $table) {
             $table->id()->primary();
-            $table->enum('name', [
-                'Other igredient', 
-                'Acidity regulator', 
-                'Antioxidant', 
-                'Clarifying agent',
-                'Correction of defect',
-                'Enrichment substance',
-                'Enzyme',
-                'Activators of alcoholic and malolactic fermentation',
-                'Fermentation agent',
-                'Gases and packaging gas',
-                'Preservative',
-                'Raw material',
-                'Sequestrant',
-                'Stabiliser',
-                'Sweetener'
-            ]);
+            $table->enum('name', config('app.ingredient_categories'));
         });
 
         Schema::create('wine_types', function(Blueprint $table) {
             $table->id()->primary();
-            $table->enum('type', [
-                'White', 
-                'Red', 
-                'Rosé', 
-                'Sparkling', 
-                'Fortified', 
-                'Orange'
-            ]);
+            $table->enum('type', config('app.wine_types'));
         });
 
         Schema::create('wine_styles', function(Blueprint $table) {
             $table->id()->primary();
-            $table->enum('style', [
-                'Dry', 
-                'Medium dry', 
-                'Medium sweet', 
-                'Sweet'
-            ]);
+            $table->enum('style', config('app.wine_styles'));
         });
 
         Schema::create('wine_2_ingredient', function(Blueprint $table) {
             $table->id()->primary();
             $table->unsignedBigInteger('wine_id');
             $table->unsignedBigInteger('ingredient_id');
-            $table->foreign('wine_id')->references('id')->on('wines')->onDelete('cascade');;
-            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');;
             $table->timestamps();
         });
 
         Schema::create('wine_sugar_content', function(Blueprint $table) {
             $table->id()->primary();
-            $table->enum('sugar_content', [
-                'Brut nature', 
-                'Extra brut', 
-                'Brut', 
-                'Extra dry',
-                'Dry',
-                'Medium dry',
-                'Medium sweet',
-                'Sweet'
-            ]);
+            $table->enum('sugar_content', config('app.wine_sugar_contents'));
+        });
+
+        Schema::create('packaging_gases', function(Blueprint $table) {
+            $table->id()->primary();
+            $table->enum('gases', config('app.gases'));
         });
     }
 
@@ -130,5 +101,6 @@ return new class extends Migration
         Schema::dropIfExists('ingredient_categories');
         Schema::dropIfExists('wine_2_ingredient');
         Schema::dropIfExists('wine_sugar_content');
+        Schema::dropIfExists('packaging_gases');
     }
 };

@@ -15,4 +15,13 @@ class WineSugarContent extends Model
      * @var string
      */
     protected $table = 'wine_sugar_content';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = ['sugar_content'];
+
+    public $timestamps = false;
 }
