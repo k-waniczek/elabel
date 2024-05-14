@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('vintage');
             $table->integer('type');
             $table->integer('style');
+            $table->integer('sugar_content');
             $table->string('appellation');
             $table->float('portion_volume')->default(100.0);
             $table->float('kilocalorie');
@@ -97,9 +98,23 @@ return new class extends Migration
             $table->id()->primary();
             $table->unsignedBigInteger('wine_id');
             $table->unsignedBigInteger('ingredient_id');
-            $table->foreign('wine_id')->references('id')->on('wines');
-            $table->foreign('ingredient_id')->references('id')->on('ingredients');
+            $table->foreign('wine_id')->references('id')->on('wines')->onDelete('cascade');;
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');;
             $table->timestamps();
+        });
+
+        Schema::create('wine_sugar_content', function(Blueprint $table) {
+            $table->id()->primary();
+            $table->enum('sugar_content', [
+                'Brut nature', 
+                'Extra brut', 
+                'Brut', 
+                'Extra dry',
+                'Dry',
+                'Medium dry',
+                'Medium sweet',
+                'Sweet'
+            ]);
         });
     }
 
@@ -114,5 +129,6 @@ return new class extends Migration
         Schema::dropIfExists('ingredients');
         Schema::dropIfExists('ingredient_categories');
         Schema::dropIfExists('wine_2_ingredient');
+        Schema::dropIfExists('wine_sugar_content');
     }
 };
