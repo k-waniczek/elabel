@@ -59,8 +59,8 @@
                         </div>
                         </div>
                         <div class="mb-3">
-                            <label for="appelation" class="form-label">Appelation</label>
-                            <input type="text" class="form-control" id="appelation" name="appelation">
+                            <label for="appellation" class="form-label">Appellation</label>
+                            <input type="text" class="form-control" id="appellation" name="appellation">
                         </div>
                         <div class="mb-3">
                             <label for="portion_volume" class="form-label">Portion volume</label>

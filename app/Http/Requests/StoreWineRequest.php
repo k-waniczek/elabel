@@ -26,7 +26,7 @@ class StoreWineRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|alpha',
+            'name' => 'required',
             'volume' => 'required|numeric',
             'weight' => 'required|numeric',
             'vintage' => 'required|numeric|min_digits:4|max_digits:4',
@@ -34,7 +34,7 @@ class StoreWineRequest extends FormRequest
             'style' => 'required|in:' . implode(',', config('app.wine_styles')),
             'sugar_content' => 'required|in:' . implode(',', config('app.wine_sugar_contents')),
             'packaging_gases' => 'required|in:' . implode(',', config('app.gases')),
-            'appelation' => 'required|alpha',
+            'appellation' => 'required|alpha',
             'portion_volume' => 'required|numeric',
             'alcohol' => 'required|numeric',
             'residual_sugar' => 'required|numeric',
@@ -46,7 +46,7 @@ class StoreWineRequest extends FormRequest
             'protein' => 'required|numeric',
             'salt' => 'required|numeric',
             'country' => 'required|size:2',
-            'sku' => 'regex:/^(?=.*\d)(?=.*[a-z])[a-z\d]{6}$/',
+            'sku' => 'regex:/^(?=.*\d)(?=.*[a-z])[a-z\d]{6}$/i',
             'ean' => 'regex:/^(\d{12,14})$/'
         ];
     }
@@ -55,7 +55,6 @@ class StoreWineRequest extends FormRequest
     {
         return [
             'name.required' => 'Name required',
-            'name.alpha' => 'Name alpha',
             'volume.required' => 'Volume required',
             'volume.numeric' => 'Volume numeric',
             'weight.required' => 'Weight required',
@@ -68,8 +67,8 @@ class StoreWineRequest extends FormRequest
             'style.in' => 'Style in',
             'sugar_content.in' => 'Sugar content in',
             'packaging_gases.in' => 'Packaging gases in',
-            'appelation.required' => 'Appelation required',
-            'appelation.alpha' => 'Appelation alpha',
+            'appellation.required' => 'Appellation required',
+            'appellation.alpha' => 'Appellation alpha',
             'portion_volume.required' => 'Portion volume required',
             'portion_volume.numeric' => 'Portion volume numeric',
             'alcohol.required' => 'Alcohol required',

@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Wine;
+use App\Models\WineStyle;
+use App\Models\WineType;
+use App\Models\WineSugarContent;
+use App\Models\PackagingGases;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreWineRequest;
 
 class WineController extends Controller
 {
-        /**
+    private function getKilocalorieFromWine(array $wine) {
+        return ((7.9 * floatval($wine['alcohol'])) * 7) + (floatval($wine['residual_sugar']) * 4) + (floatval($wine['total_acidity']) * 4);
+    }
+
+    private function kilocalorieToKilojoules(int $kilocalorie) {
+        return round(4.184 * $kilocalorie, 1);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -29,12 +41,27 @@ class WineController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Request\StoreWineReqest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreWineRequest $request)
     {
-        Wine::create($request->all());
+        $data = $request->all();
+        $kilocalorie = $this->getKilocalorieFromWine($data);
+        $wine_type = WineType::where('type', $data['type'])->get()[0]->id;
+        $wine_style = WineStyle::where('style', $data['style'])->get()[0]->id;
+        $wine_sugar_content = WineSugarContent::where('sugar_content', $data['sugar_content'])->get()[0]->id;
+        $packaging_gases = PackagingGases::where('gases', $data['packaging_gases'])->get()[0]->id;
+        $data['type'] = $wine_type;
+        $data['style'] = $wine_style;
+        $data['sugar_content'] = $wine_sugar_content;
+        $data['packaging_gases'] = $packaging_gases;
+        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
+        Wine::create([
+            ...$data, 
+            'kilocalorie' => $kilocalorie, 
+            'kilojoule' => $this->kilocalorieToKilojoules($kilocalorie)
+        ]);
         return redirect()->route('wines.index')
             ->with('success', 'Wine created successfully.');
     }
