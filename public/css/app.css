@@ -11972,12 +11972,6 @@ body {
   overflow-x: hidden;
 }
 
-.flex-box {
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-}
-
 .form-check input {
   display: none;
 }
@@ -11986,15 +11980,20 @@ body {
      -moz-user-select: none;
           user-select: none;
   padding: 1%;
-  border: 2px solid rgb(45, 45, 45);
+  border: 2px solid #212529;
   border-radius: 5px;
-  font-weight: bold;
+  margin-bottom: 5px;
+  margin-right: 5px;
 }
 .form-check label:active {
   background-color: grey;
   color: white;
 }
 .form-check input:checked + label {
-  background-color: rgb(45, 45, 45);
+  background-color: #212529;
   color: white;
+}
+
+#cert-column {
+  border-left: solid 1px #212529;
 }
