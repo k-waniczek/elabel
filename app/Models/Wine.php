@@ -15,4 +15,37 @@ class Wine extends Model
      * @var string
      */
     protected $table = 'wines';
+
+    protected $fillable = [
+        'name',
+        'volume',
+        'weight',
+        'vintage',
+        'type',
+        'style',
+        'sugar_content',
+        'packaging_gases',
+        'appellation',
+        'portion_volume',
+        'alcohol',
+        'residual_sugar',
+        'total_acidity',
+        'kilocalorie',
+        'kilojoule',
+        'fat_total',
+        'fat_saturates',
+        'carbohydrate_total',
+        'carbohydrate_sugar',
+        'protein',
+        'salt',
+        'warning_drinking_during_pregnancy',
+        'warning_drinking_below_legal_age',
+        'warning_drinking_when_driving',
+        'certifications_organic',
+        'certifications_vegetarian',
+        'certifications_vegan',
+        'country',
+        'sku',
+        'ean'
+    ];
 }

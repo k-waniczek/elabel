@@ -11970,7 +11970,3 @@ body {
   background: linear-gradient(90deg, rgb(205, 23, 158) 9%, rgb(9, 54, 121) 100%, rgb(0, 4, 255) 100%);
   overflow: hidden;
 }
-
-.card {
-  top: 35%;
-}
