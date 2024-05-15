@@ -28,13 +28,6 @@ class WineController extends Controller
      */
     public function index()
     {
-        if (!Auth::check()) {
-        return redirect()->route('login')
-                ->withErrors([
-                'email' => 'Please login to access the wines list.',
-            ])->onlyInput('email');
-        }
-
         $wines = Wine::all();
         return view('wines.index', compact('wines'));
     }
