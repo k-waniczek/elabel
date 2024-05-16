@@ -231,4 +231,11 @@ class WineController extends Controller
 
         echo "<script>window.close()</script>";
     }  
+    public function delete_row($id) {
+        $data=Post::find($id);
+
+        $data->delete();
+
+        return response()->json(['success'=>true, 'tr' => 'tr_'.$id]);
+    }
 }
