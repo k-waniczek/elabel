@@ -50,8 +50,9 @@ return new class extends Migration
         Schema::create('ingredients', function(Blueprint $table) {
             $table->id()->primary();
             $table->string('name');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('category');
-            $table->integer('enumber');
+            $table->integer('enumber')->nullable();
             $table->boolean('allergen');
             $table->boolean('custom');
             $table->timestamps();

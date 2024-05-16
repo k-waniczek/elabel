@@ -15,4 +15,12 @@ class Ingredient extends Model
      * @var string
      */
     protected $table = 'ingredients';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = ['name', 'user_id', 'category', 'enumber', 'allergen', 'custom'];
+
 }

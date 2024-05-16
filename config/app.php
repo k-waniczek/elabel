@@ -139,7 +139,7 @@ return [
     ],
 
     'ingredient_categories' => [
-        'Other igredient', 
+        'Other', 
         'Acidity regulator', 
         'Antioxidant', 
         'Clarifying agent',
@@ -154,6 +154,42 @@ return [
         'Sequestrant',
         'Stabiliser',
         'Sweetener'
+    ],
+
+    'ingredients' => [
+        ['name' => 'Aleppo pine resin', 'category' => 'Other', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Ascorbic acid', 'category' => 'Antioxidant', 'enumber' => 300, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Calcium sulphate', 'category' => 'AcidityRegulator', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Caramel', 'category' => 'Other', 'enumber' => 150, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Carbon dioxide', 'category' => 'RawMaterial', 'enumber' => 290, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Carboxymethylcellulose', 'category' => 'Stabiliser', 'enumber' => 469, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Citric acid', 'category' => 'Stabiliser', 'enumber' => 330, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Concentrated grape must', 'category' => 'EnrichmentSubstance', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Concentrated grape must', 'category' => 'RawMaterial', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Concentrated grape must', 'category' => 'Sweetener', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Dimethyldicarbonate', 'category' => 'Preservative', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Egg', 'category' => 'ClarifyingAgent', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Egg', 'category' => 'Preservative', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Expedition liqueur', 'category' => 'RawMaterial', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Fumaric acid', 'category' => 'Stabiliser', 'enumber' => 297, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Grapes', 'category' => 'RawMaterial', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Gum arabic', 'category' => 'Stabiliser', 'enumber' => 414, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Lactic acid', 'category' => 'AcidityRegulator', 'enumber' => 270, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Malic acid', 'category' => 'AcidityRegulator', 'enumber' => 296, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Metatartaric acid', 'category' => 'Stabiliser', 'enumber' => 353, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Milk', 'category' => 'ClarifyingAgent', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Milk casein', 'category' => 'ClarifyingAgent', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Milk products', 'category' => 'ClarifyingAgent', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Milk protein', 'category' => 'ClarifyingAgent', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Potassium polyaspartate', 'category' => 'Stabiliser', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Potassium sorbate', 'category' => 'Preservative', 'enumber' => 202, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Sucrose', 'category' => 'EnrichmentSubstance', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Sugar', 'category' => 'EnrichmentSubstance', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Sugar', 'category' => 'Sweetener', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Sulphites', 'category' => 'Preservative', 'enumber' => 0, 'allergen' => 1, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Tartaric acid', 'category' => 'AcidityRegulator', 'enumber' => 334, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Tirage liqueur', 'category' => 'RawMaterial', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null],
+        ['name' => 'Yeast mannoproteins', 'category' => 'Stabiliser', 'enumber' => 0, 'allergen' => 0, 'custom' => 0, 'user_id' => null]
     ],
 
     /*

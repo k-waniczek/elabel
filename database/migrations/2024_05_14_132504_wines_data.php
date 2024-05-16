@@ -3,11 +3,13 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use App\Models\WineStyle;
 use App\Models\WineType;
 use App\Models\WineSugarContent;
 use App\Models\PackagingGases;
 use App\Models\IngredientCategory;
+use App\Models\Ingredient;
 
 return new class extends Migration
 {
@@ -45,6 +47,12 @@ return new class extends Migration
         foreach (config('app.gases') as $gases) {
             PackagingGases::create(['gases' => $gases]);
         }
+
+        Ingredient::truncate();
+        foreach (config('app.ingredients') as $ingredient) {
+            $ingredient['category'] = IngredientCategory::where('name', ucfirst(Str::snake($ingredient['category'], ' ')))->get()[0]->id;
+            Ingredient::create($ingredient);
+        }
     }
 
     /**
@@ -57,5 +65,6 @@ return new class extends Migration
         WineSugarContent::truncate();
         IngredientCategory::truncate();
         PackagingGases::truncate();
+        Ingredient::truncate();
     }
 };
