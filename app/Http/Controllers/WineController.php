@@ -123,6 +123,15 @@ class WineController extends Controller
     public function edit($id)
     {
         $wine = Wine::find($id);
+        $wine_type = WineType::where('id', $wine->type)->get()[0]->type;
+        $wine_style = WineStyle::where('id', $wine->style)->get()[0]->style;
+        $wine_sugar_content = WineSugarContent::where('id', $wine->sugar_content)->get()[0]->sugar_content;
+        $packaging_gases = PackagingGases::where('id', $wine->packaging_gases)->get()[0]->gases;
+        $wine->type = $wine_type;
+        $wine->style = $wine_style;
+        $wine->sugar_content = $wine_sugar_content;
+        $wine->packaging_gases = $packaging_gases;
+
         return view('wines.edit', compact('wine'));
     }
 }
