@@ -152,13 +152,14 @@ class WineController extends Controller
 
     public function generate($id, $format) 
     {
+        $url = preg_replace("/\/generate\/[a-z]{3}/", '/view', url()->current());
         $path = __DIR__.'/../../../resources/files/';
         switch (strtolower($format)) {
             case 'png':
                 $result = Builder::create()
                     ->writer(new PngWriter())
                     ->writerOptions([])
-                    ->data('Custom QR code contents')
+                    ->data($url)
                     ->encoding(new Encoding('UTF-8'))
                     ->errorCorrectionLevel(ErrorCorrectionLevel::High)
                     ->size(300)
@@ -181,7 +182,7 @@ class WineController extends Controller
                 $result = Builder::create()
                     ->writer(new SvgWriter())
                     ->writerOptions([])
-                    ->data('Custom QR code contents')
+                    ->data($url)
                     ->encoding(new Encoding('UTF-8'))
                     ->errorCorrectionLevel(ErrorCorrectionLevel::High)
                     ->size(300)
@@ -204,7 +205,7 @@ class WineController extends Controller
                 $result = Builder::create()
                     ->writer(new PdfWriter())
                     ->writerOptions([])
-                    ->data('Custom QR code contents')
+                    ->data($url)
                     ->encoding(new Encoding('UTF-8'))
                     ->errorCorrectionLevel(ErrorCorrectionLevel::High)
                     ->size(300)
