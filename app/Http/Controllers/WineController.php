@@ -28,7 +28,7 @@ class WineController extends Controller
      */
     public function index()
     {
-        $wines = Wine::all();
+        $wines = Wine::where('user_id', Auth::id())->get();
         return view('wines.index', compact('wines'));
     }
     /**
@@ -53,7 +53,8 @@ class WineController extends Controller
         Wine::create([
             ...$data, 
             'kilocalorie' => $kilocalorie, 
-            'kilojoule' => $this->kilocalorieToKilojoules($kilocalorie)
+            'kilojoule' => $this->kilocalorieToKilojoules($kilocalorie),
+            'user_id' => Auth::id()
         ]);
         return redirect()->route('wines.index')
             ->with('success', 'Wine created successfully.');

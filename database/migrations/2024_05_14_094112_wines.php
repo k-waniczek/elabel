@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('wines', function(Blueprint $table) {
             $table->id()->primary();
             $table->string('name');
+            $table->unsignedBigInteger('user_id');
             $table->integer('volume');
             $table->integer('weight');
             $table->integer('vintage');

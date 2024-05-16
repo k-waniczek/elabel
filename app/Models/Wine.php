@@ -18,6 +18,7 @@ class Wine extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'volume',
         'weight',
         'vintage',
