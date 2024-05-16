@@ -28,12 +28,12 @@
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="allergen" name="allergen">
                             <label class="form-check-label" for="allergen">
-                                Is the ingredient an allergen?
+                                Allergen
                             </label>
                         </div>
                         <div class="mb-3 mt-4 row gap-2">
                             <button class="btn btn-outline-secondary col" type="reset">Cancel</button>
-                            <button class="btn btn-primary col" type="submit">Add wine</button>
+                            <button class="btn btn-primary col" type="submit">Add ingredient</button>
                         </div>
                     </form>
                 </div>

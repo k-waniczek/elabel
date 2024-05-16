@@ -17,7 +17,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        $ingredients = Ingredient::where('user_id', Auth::id())->get();
+        $ingredients = Ingredient::where('user_id', Auth::id())->where('custom', 1)->orWhere('custom', 0)->get();
         return view('ingredients.index', compact('ingredients'));
     }
     /**
@@ -28,9 +28,14 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
+        $data = $request->all();
+        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
+        $category = IngredientCategory::where('name', $data['category'])->get()[0]->id;
+        $data['category'] = $category;
         Ingredient::create([
-            ...$request->all(), 
-            'user_id' => Auth::id()
+            ...$data, 
+            'user_id' => Auth::id(),
+            'custom' => true,
         ]);
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredients created successfully.');
@@ -92,6 +97,9 @@ class IngredientController extends Controller
     public function edit($id)
     {
         $ingredient = Ingredient::find($id);
+        if ($ingredient->user_id != Auth::id()) {
+            return redirect()->route('dashboard')->with('error', 'You can\'t access this page!');
+        }
         $ingredient_category = IngredientCategory::where('id', $ingredient->category)->get()[0]->name;
         $ingredient->category = $ingredient_category;
 

@@ -53,7 +53,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->integer('category');
             $table->integer('enumber')->nullable();
-            $table->boolean('allergen');
+            $table->boolean('allergen')->default(false);
             $table->boolean('custom');
             $table->timestamps();
         });
