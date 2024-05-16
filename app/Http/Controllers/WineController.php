@@ -11,6 +11,16 @@ use App\Models\PackagingGases;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreWineRequest;
 
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel;
+use Endroid\QrCode\Label\LabelAlignment;
+use Endroid\QrCode\Label\Font\NotoSans;
+use Endroid\QrCode\RoundBlockSizeMode;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\PdfWriter;
+use Endroid\QrCode\Writer\SvgWriter;
+
 class WineController extends Controller
 {
     private function getKilocalorieFromWine(array $wine) {
@@ -134,4 +144,85 @@ class WineController extends Controller
 
         return view('wines.edit', compact('wine'));
     }
+
+    public function generate($id, $format) 
+    {
+        $path = __DIR__.'/../../../resources/files/';
+        switch (strtolower($format)) {
+            case 'png':
+                $result = Builder::create()
+                    ->writer(new PngWriter())
+                    ->writerOptions([])
+                    ->data('Custom QR code contents')
+                    ->encoding(new Encoding('UTF-8'))
+                    ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+                    ->size(300)
+                    ->margin(10)
+                    ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+                    ->validateResult(false)
+                    ->build();
+
+                $file_name = $path . 'qr.png';
+                file_put_contents($file_name, $result->getString());
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename=qr.png");
+                header("Content-Type: image/png");
+                header("Content-Transfer-Encoding: binary");
+                readfile($file_name);
+                exit;
+                break;
+            case 'svg':
+                $result = Builder::create()
+                    ->writer(new SvgWriter())
+                    ->writerOptions([])
+                    ->data('Custom QR code contents')
+                    ->encoding(new Encoding('UTF-8'))
+                    ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+                    ->size(300)
+                    ->margin(10)
+                    ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+                    ->validateResult(false)
+                    ->build();
+
+                $file_name = $path . 'qr.svg';
+                file_put_contents($file_name, $result->getString());
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename=qr.svg");
+                header("Content-Type: image/xml+svg");
+                header("Content-Transfer-Encoding: binary");
+                readfile($file_name);
+                exit;
+                break;
+            case 'pdf':
+                $result = Builder::create()
+                    ->writer(new PdfWriter())
+                    ->writerOptions([])
+                    ->data('Custom QR code contents')
+                    ->encoding(new Encoding('UTF-8'))
+                    ->errorCorrectionLevel(ErrorCorrectionLevel::High)
+                    ->size(300)
+                    ->margin(10)
+                    ->roundBlockSizeMode(RoundBlockSizeMode::Margin)
+                    ->validateResult(false)
+                    ->build();
+
+                $file_name = $path . 'qr.pdf';
+                file_put_contents($file_name, $result->getString());
+                header("Cache-Control: public");
+                header("Content-Description: File Transfer");
+                header("Content-Disposition: attachment; filename=qr.pdf");
+                header("Content-Type: application/pdf");
+                header("Content-Transfer-Encoding: binary");
+                readfile($file_name);
+                exit;
+                break;
+            default:
+                echo 'Unsupported format!';
+                break;
+        }        
+
+        echo "<script>window.close()</script>";
+    }  
 }

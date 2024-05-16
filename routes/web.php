@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/wines/{wine}/edit', WineController::class .'@edit')->name('wines.edit');
     Route::put('/wines/{wine}', WineController::class .'@update')->name('wines.update');
     Route::delete('/wines/{wine}', WineController::class .'@destroy')->name('wines.destroy');
+    Route::get('/wines/{wine}/generate/{format}', WineController::class . '@generate')->name('wines.generate');
 
     Route::get('/ingredients/list', IngredientController::class . '@index')->name('ingredients.index');
     Route::get('/ingredients/create', IngredientController::class . '@create')->name('ingredients.create');
