@@ -145,6 +145,11 @@ class WineController extends Controller
         return view('wines.edit', compact('wine'));
     }
 
+    public function view($id) {
+        $wine = Wine::find($id);
+        return view('wines.show', compact('wine'));
+    }
+
     public function generate($id, $format) 
     {
         $path = __DIR__.'/../../../resources/files/';
