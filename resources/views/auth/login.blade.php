@@ -30,6 +30,7 @@
                         <div class="mb-3 row">
                             <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Login">
                         </div>
+                        <p style="text-align:center;">You don't have account yet?<a href='register'> Click here to create one</a></p>
                     </form>
                 </div>
             </div>

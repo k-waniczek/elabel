@@ -45,7 +45,7 @@
                         <div class="mb-3 row">
                             <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Register">
                         </div>
-                        
+                        <p style="text-align:center;">You already have an account?<a href='login'> Click here to log in</a></p>
                     </form>
                 </div>
             </div>
