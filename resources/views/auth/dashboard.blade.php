@@ -16,11 +16,21 @@
                     <div class="alert alert-success">
                         {{ $message }}
                     </div>
+                @elseif ($message = Session::get('error'))
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
                 @else
                     <div class="alert alert-success">
                         You are logged in!
                     </div>       
-                @endif                
+                @endif              
+                <ul>
+                    <li><a href="/wines/list">Wines list</a></li>
+                    <li><a href="/wines/create">Add wine</a></li>
+                    <li><a href="/ingredients/list">Ingredients list</a></li>
+                    <li><a href="/ingredients/create">Add ingredient</a></li>    
+                </ul>  
             </div>
         </div>
     </div>    
