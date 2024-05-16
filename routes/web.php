@@ -38,3 +38,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/ingredients/{ingredient}', IngredientController::class .'@update')->name('ingredients.update');
     Route::delete('/ingredients/{ingredient}', IngredientController::class .'@destroy')->name('ingredients.destroy');
 });
+
+route::delete('/{id}',[HomeController::class,'delete_row']);
