@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'Add a wine')
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -12,19 +12,32 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="The name of your wine, e.g. Bordeaux">
+                        @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="volume" class="form-label">Volume</label>
                         <input type="number" class="form-control" id="volume" name="volume" placeholder="The total volume of your wine in ml, e.g. 750">
-                    </div>
-                    <div class="mb-3">
+                        @if ($errors->has('volume'))
+                            <span class="text-danger">{{ $errors->first('volume') }}</span>
+                        @endif
+                    </div><div class="mb-3">
                         <label for="weight" class="form-label">Weight</label>
                         <input type="number" class="form-control" id="weight" name="weight" placeholder="Weight of the bottle in grams, e.g. 1300">
+                        @if ($errors->has('weight'))
+                            <span class="text-danger">{{ $errors->first('weight') }}</span>
+                        @endif
                     </div>
+
                     <div class="mb-3">
                         <label for="vintage" class="form-label">Vintage</label>
                         <input type="number" class="form-control" id="vintage" name="vintage" placeholder="Year the grapes were harvested, e.g. 2023">
+                        @if ($errors->has('vintage'))
+                            <span class="text-danger">{{ $errors->first('vintage') }}</span>
+                        @endif
                     </div>
+
 
                     <div class="row mb-3">
                         <div class="col-sm">
@@ -59,53 +72,95 @@
                                     <option value="{{$pg}}">{{$pg}}</option>
                                 @endforeach
                             </select>
-                        </div><div class="mb-3">
-                          <label for="appellation" class="form-label">Appellation</label>
-                          <input type="text" class="form-control" id="appellation" name="appellation" placeholder="The designated region of grape origin, e.g. Napa Valley">
-                        </div>
-                        <div class="mb-3">
-                          <label for="portion_volume" class="form-label">Portion Volume</label>
-                          <input type="number" class="form-control" id="portion_volume" name="portion_volume" placeholder="Typical serving size in milliliters, e.g. 150ml">
-                        </div>
-                        <div class="mb-3">
-                          <label for="alcohol" class="form-label">Alcohol (% ABV)</label>
-                          <input type="number" class="form-control" id="alcohol" name="alcohol" placeholder="Alcohol by volume, e.g. 13.5">
-                        </div>
-                        <div class="mb-3">
-                          <label for="residual_sugar" class="form-label">Residual Sugar (g/L)</label>
-                          <input type="number" class="form-control" id="residual_sugar" name="residual_sugar" placeholder="Grams of sugar per liter remaining after fermentation">
-                        </div>
-                        <div class="mb-3">
-                          <label for="total_acidity" class="form-label">Total Acidity (g/L)</label>
-                          <input type="number" class="form-control" id="total_acidity" name="total_acidity" placeholder="Total amount of acidity in the wine">
                         </div>
 
                         <div class="mb-3">
-                          <label for="fat_total" class="form-label">Total Fat (g/L)</label>
-                          <input type="number" class="form-control" id="fat_total" name="fat_total" placeholder="Total fat content, usually very low">
-                        </div>
-                        <div class="mb-3">
-                          <label for="fat_saturates" class="form-label">Saturated Fat (g/L)</label>
-                          <input type="number" class="form-control" id="fat_saturates" name="fat_saturates" placeholder="Saturated fat content, usually negligible">
-                        </div>
+  <label for="appellation" class="form-label">Appellation</label>
+  <input type="text" class="form-control" id="appellation" name="appellation" placeholder="The designated region of grape origin, e.g. Napa Valley">
+  @if ($errors->has('appellation'))
+    <span class="text-danger">{{ $errors->first('appellation') }}</span>
+  @endif
+</div>
 
-                        <div class="mb-3">
-                          <label for="carbohydrate_total" class="form-label">Total Carbohydrates (g/L)</label>
-                          <input type="number" class="form-control" id="carbohydrate_total" name="carbohydrate_total" placeholder="Total amount of carbohydrates, primarily from residual sugar">
-                        </div>
-                        <div class="mb-3">
-                          <label for="carbohydrate_sugar" class="form-label">Sugars (g/L)</label>
-                          <input type="number" class="form-control" id="carbohydrate_sugar" name="carbohydrate_sugar" placeholder="Amount of sugar remaining after fermentation">
-                        </div>
+<div class="mb-3">
+  <label for="portion_volume" class="form-label">Portion Volume</label>
+  <input type="number" class="form-control" id="portion_volume" name="portion_volume" placeholder="Typical serving size in milliliters, e.g. 150ml">
+  @if ($errors->has('portion_volume'))
+    <span class="text-danger">{{ $errors->first('portion_volume') }}</span>
+  @endif
+</div>
 
-                        <div class="mb-3">
-                            <label for="protein" class="form-label">Protein (g/L)</label>
-                            <input type="number" class="form-control" id="protein" name="protein" placeholder="Amount of protein, usually very low">
-                        </div>
-                        <div class="mb-3">
-                          <label for="salt" class="form-label">Salt (g/L)</label>
-                          <input type="number" class="form-control" id="salt" name="salt" placeholder="Amount of sodium chloride, usually negligible">
-                        </div>
+<div class="mb-3">
+  <label for="alcohol" class="form-label">Alcohol (% ABV)</label>
+  <input type="number" class="form-control" id="alcohol" name="alcohol" placeholder="Alcohol by volume, e.g. 13.5">
+  @if ($errors->has('alcohol'))
+    <span class="text-danger">{{ $errors->first('alcohol') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="residual_sugar" class="form-label">Residual Sugar (g/L)</label>
+  <input type="number" class="form-control" id="residual_sugar" name="residual_sugar" placeholder="Grams of sugar per liter remaining after fermentation">
+  @if ($errors->has('residual_sugar'))
+    <span class="text-danger">{{ $errors->first('residual_sugar') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="total_acidity" class="form-label">Total Acidity (g/L)</label>
+  <input type="number" class="form-control" id="total_acidity" name="total_acidity" placeholder="Total amount of acidity in the wine">
+  @if ($errors->has('total_acidity'))
+    <span class="text-danger">{{ $errors->first('total_acidity') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="fat_total" class="form-label">Total Fat (g/L)</label>
+  <input type="number" class="form-control" id="fat_total" name="fat_total" placeholder="Total fat content, usually very low">
+  @if ($errors->has('fat_total'))
+    <span class="text-danger">{{ $errors->first('fat_total') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="fat_saturates" class="form-label">Saturated Fat (g/L)</label>
+  <input type="number" class="form-control" id="fat_saturates" name="fat_saturates" placeholder="Saturated fat content, usually negligible">
+  @if ($errors->has('fat_saturates'))
+    <span class="text-danger">{{ $errors->first('fat_saturates') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="carbohydrate_total" class="form-label">Total Carbohydrates (g/L)</label>
+  <input type="number" class="form-control" id="carbohydrate_total" name="carbohydrate_total" placeholder="Total amount of carbohydrates, primarily from residual sugar">
+  @if ($errors->has('carbohydrate_total'))
+    <span class="text-danger">{{ $errors->first('carbohydrate_total') }}</span>
+  @endif
+</div>
+<div class="mb-3">
+  <label for="carbohydrate_sugar" class="form-label">Sugars (g/L)</label>
+  <input type="number" class="form-control" id="carbohydrate_sugar" name="carbohydrate_sugar" placeholder="Amount of sugar remaining after fermentation">
+  @if ($errors->has('carbohydrate_sugar'))
+    <span class="text-danger">{{ $errors->first('carbohydrate_sugar') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="protein" class="form-label">Protein (g/L)</label>
+  <input type="number" class="form-control" id="protein" name="protein" placeholder="Amount of protein, usually very low">
+  @if ($errors->has('protein'))
+    <span class="text-danger">{{ $errors->first('protein') }}</span>
+  @endif
+</div>
+
+<div class="mb-3">
+  <label for="salt" class="form-label">Salt (g/L)</label>
+  <input type="number" class="form-control" id="salt" name="salt" placeholder="Amount of sodium chloride, usually negligible">
+  @if ($errors->has('salt'))
+    <span class="text-danger">{{ $errors->first('salt') }}</span>
+  @endif
+</div>
+
 
                         <div class="row mb-3">
 
@@ -157,16 +212,30 @@
                         </div>
 
                         <div class="mb-3">
-                          <label for="country" class="form-label">Country</label>
-                          <input type="text" class="form-control" id="country" name="country" placeholder="The country of origin for the wine">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" name="country" placeholder="The country of origin for the wine">
+                            <span class="text-danger">
+                            ‎ 
+                            @if ($errors->has('country'))
+                                {{ $errors->first('country') }}
+                            @endif
+                            </span>
                         </div>
+
                         <div class="mb-3">
-                          <label for="sku" class="form-label">SKU</label>
-                          <input type="text" class="form-control" id="sku" name="sku" placeholder="Stock Keeping Unit, a product identifier">
+                            <label for="sku" class="form-label">SKU</label>
+                            <input type="text" class="form-control" id="sku" name="sku" placeholder="Stock Keeping Unit, a product identifier">
+                            @if ($errors->has('sku'))
+                                <span class="text-danger">{{ $errors->first('sku') }}</span>
+                            @endif
                         </div>
+
                         <div class="mb-3">
-                          <label for="ean" class="form-label">EAN</label>
-                          <input type="text" class="form-control" id="ean" name="ean" placeholder="European Article Number, a product barcode">
+                            <label for="ean" class="form-label">EAN</label>
+                            <input type="text" class="form-control" id="ean" name="ean" placeholder="European Article Number, a product barcode">
+                            @if ($errors->has('ean'))
+                                <span class="text-danger">{{ $errors->first('ean') }}</span>
+                            @endif
                         </div>
 
                         <div class="mb-3 mt-4 row gap-2">
