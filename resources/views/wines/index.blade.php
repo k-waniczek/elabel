@@ -6,7 +6,7 @@ use App\Models\IngredientCategory;
 ?>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css">
-<div class="container col-10 mt-5">
+<div class="containerBox col-10 mt-5">
     <table id="myTable" class="table table-striped table-bordered">
         <thead>
             <tr>

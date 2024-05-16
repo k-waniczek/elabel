@@ -35,3 +35,11 @@ body {
 #cert-column{
     border-left: solid 1px #212529;
 }
+
+.containerBox {
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+}
