@@ -111,4 +111,12 @@ class IngredientController extends Controller
 
         return view('ingredients.edit', compact('ingredient'));
     }
+
+    public function delete_row($id) {
+        $data=Post::find($id);
+
+        $data->delete();
+
+        return response()->json(['success'=>true, 'tr' => 'tr_'.$id]);
+    }
 }
