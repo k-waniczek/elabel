@@ -1,11 +1,11 @@
 @extends('layout')
-@section('title', 'Add a wine')
+@section('title', 'Update a wine')
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Add a wine</div>
+                <div class="card-header">Update a wine</div>
                 <div class="card-body">
                     <form action="{{ route('wines.update', ['wine' => $wine->id]) }}" method="post">
                         @csrf
