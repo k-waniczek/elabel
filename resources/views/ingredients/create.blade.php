@@ -32,7 +32,7 @@
                             </label>
                         </div>
                         <div class="mb-3 mt-4 row gap-2">
-                            <button class="btn btn-outline-secondary col" type="reset">Cancel</button>
+                            <button class="btn btn-outline-secondary col" type="reset" onclick="window.location.replace('../dashboard');">Cancel</button>
                             <button class="btn btn-primary col" type="submit">Add ingredient</button>
                         </div>
                     </form>
