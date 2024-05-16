@@ -21,6 +21,20 @@ class WineController extends Controller
         return round(4.184 * $kilocalorie, 1);
     }
 
+    private function transformFormData(array $request) {
+        $data = $request;
+        $wine_type = WineType::where('type', $data['type'])->get()[0]->id;
+        $wine_style = WineStyle::where('style', $data['style'])->get()[0]->id;
+        $wine_sugar_content = WineSugarContent::where('sugar_content', $data['sugar_content'])->get()[0]->id;
+        $packaging_gases = PackagingGases::where('gases', $data['packaging_gases'])->get()[0]->id;
+        $data['type'] = $wine_type;
+        $data['style'] = $wine_style;
+        $data['sugar_content'] = $wine_sugar_content;
+        $data['packaging_gases'] = $packaging_gases;
+        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,17 +53,8 @@ class WineController extends Controller
      */
     public function store(StoreWineRequest $request)
     {
-        $data = $request->all();
+        $data = $this->transformFormData($request->all());
         $kilocalorie = $this->getKilocalorieFromWine($data);
-        $wine_type = WineType::where('type', $data['type'])->get()[0]->id;
-        $wine_style = WineStyle::where('style', $data['style'])->get()[0]->id;
-        $wine_sugar_content = WineSugarContent::where('sugar_content', $data['sugar_content'])->get()[0]->id;
-        $packaging_gases = PackagingGases::where('gases', $data['packaging_gases'])->get()[0]->id;
-        $data['type'] = $wine_type;
-        $data['style'] = $wine_style;
-        $data['sugar_content'] = $wine_sugar_content;
-        $data['packaging_gases'] = $packaging_gases;
-        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
         Wine::create([
             ...$data, 
             'kilocalorie' => $kilocalorie, 
@@ -62,17 +67,16 @@ class WineController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Request\StoreWineReqest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreWineRequest $request, $id)
     {
-        $request->validate([
-        
-        ]);
+        $data = $this->transformFormData($request->all());
+        $kilocalorie = $this->getKilocalorieFromWine($data);
         $wine = Wine::find($id);
-        $wine->update($request->all());
+        $wine->update($data);
         return redirect()->route('wines.index')
             ->with('success', 'Wine updated successfully.');
     }
