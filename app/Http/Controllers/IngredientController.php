@@ -10,6 +10,14 @@ use App\Http\Requests\StoreIngredientRequest;
 
 class IngredientController extends Controller
 {
+    private function transformFormData(array $request) {
+        $data = $request;
+        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
+        $category = IngredientCategory::where('name', $data['category'])->get()[0]->id;
+        $data['category'] = $category;
+        return $data;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,10 +36,7 @@ class IngredientController extends Controller
      */
     public function store(StoreIngredientRequest $request)
     {
-        $data = $request->all();
-        $data = array_map(fn($x) => $x == 'on' ? $x = 1 : $x, $data);
-        $category = IngredientCategory::where('name', $data['category'])->get()[0]->id;
-        $data['category'] = $category;
+        $data = $this->transformFormData($request->all());
         Ingredient::create([
             ...$data, 
             'user_id' => Auth::id(),
@@ -49,8 +54,9 @@ class IngredientController extends Controller
      */
     public function update(StoreIngredientRequest $request, $id)
     {
+        $data = $this->transformFormData($request->all());
         $ingredient = Ingredient::find($id);
-        $ingredient->update($request->all());
+        $ingredient->update($data);
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredient updated successfully.');
     }
