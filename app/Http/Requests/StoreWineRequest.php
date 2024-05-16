@@ -34,7 +34,7 @@ class StoreWineRequest extends FormRequest
             'style' => 'required|in:' . implode(',', config('app.wine_styles')),
             'sugar_content' => 'required|in:' . implode(',', config('app.wine_sugar_contents')),
             'packaging_gases' => 'required|in:' . implode(',', config('app.gases')),
-            'appellation' => 'required|alpha',
+            'appellation' => 'required',
             'portion_volume' => 'required|numeric',
             'alcohol' => 'required|numeric',
             'residual_sugar' => 'required|numeric',
