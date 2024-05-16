@@ -68,7 +68,6 @@ class StoreWineRequest extends FormRequest
             'sugar_content.in' => 'Sugar content must be selected from the list',
             'packaging_gases.in' => 'Packaging gases must be selected from the list',
             'appellation.required' => 'Appellation field can\'t be empty',
-            'appellation.alpha' => 'Appellation must contain only letters from alphabet',
             'portion_volume.required' => 'Portion volume field can\'t be empty',
             'portion_volume.numeric' => 'Portion volume field must be a number',
             'alcohol.required' => 'Alcohol field can\'t be empty',
